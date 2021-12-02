@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<ApiProjet.Models.Comment>
+
+<table class="table text-white bg-dark">
+    <thead>
+        <tr>
+            <th class="w-25">
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th class="w-50">
+                Comment
+            </th>
+            <th class="w-25">
+                photo identifier
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="w-25">
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td class="w-75">
+                    @Html.DisplayFor(modelItem => item.Body)
+                </td>
+                <td class="w-25">
+                    @Html.DisplayFor(modelItem => item.UrlPhoto)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

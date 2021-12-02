@@ -1,0 +1,81 @@
+﻿@model IEnumerable<NasaImage.Model.TodoResult>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details des photos</h1>
+
+<p>
+
+    <script>var cpt = 0;</script>
+</p>
+<table class="table table-striped table-dark ">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.identifier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.caption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.version)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.identifier)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.caption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.version)
+            </td>
+            <td>
+
+
+                <a asp-action="VueOnImage" asp-route-identifier="@item.identifier">Vieuw <img src="" onload="this.onload=null; this.src=ImgSource(); alt="Sample Photo /></a>
+
+                <script>
+                    var str = "";
+                    var adress = "";
+                    var datey = "";
+                    str = "@item.identifier";
+                    console.log(str);
+                    datey = str.slice(0, 4);
+                    var datem = str.slice(4, 6);
+                    var dated = str.slice(6, 8);
+                    var type = ".jpg";
+                    function ImgSource() {
+                        console.log(str);
+                        console.log(datey + datem + dated);
+                        adress = "https://epic.gsfc.nasa.gov/archive/natural/" + datey + "/" + datem + "/" + dated + "/thumbs/" + "@item.image" + type;
+                        console.log(adress);
+                        return adress;
+                    }
+                    document.write('<img src="' + ImgSource() + '">');
+                </script>
+            </td>
+
+        </tr>
+
+        }
+
+    </tbody>
+</table>

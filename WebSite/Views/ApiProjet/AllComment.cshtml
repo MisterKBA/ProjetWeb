@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ApiProjet.Models.Comment>
+
+@{
+    ViewData["Title"] = "AllComment";
+}
+
+<h1 class="text-white">AllComment</h1>
+
+
+<table class="table text-white bg-dark" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlPhoto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlPhoto)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditAComment", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "DeleteAComment", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

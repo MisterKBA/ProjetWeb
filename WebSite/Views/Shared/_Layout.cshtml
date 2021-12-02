@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebSite</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <base hreg="~/" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebSite</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Basic" asp-action="Index">Voir toutes les dates</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Grid" asp-action="ShowGrid">Voir les dates par pages</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a asp-controller="Account" asp-action="Profile">Hello @User.Identity.Name - </a>
+                            </li>
+                            <li>
+                                <a id="qsLogoutBtn" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a id="qsLoginBtn" asp-controller="Account" asp-action="Login">Login</a></li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+    </header>
+    <div class="text-center text-white"><h2>Projet web de fin d'année</h2></div>
+    <div class="text-center text-white"><h2>DSCOVR</h2></div>
+    <div class="d-flex bd-highlight">
+        <div class="p-2 flex-fill bd-highlight">
+            <img src="~/IMG/16327714945_94ea56e147_z.jpg" width="400" height="300">
+        </div>
+        <div class="p-2 flex-fill align-self-center bd-highlight text-center text-white">
+            <a>
+                Deep Space Climate Observatory, en français Observatoire du climat depuis l'espace lointain,
+                anciennement programme Triana, surnommé de manière non officielle GoreSat,
+                connu également sous son acronyme DSCOVR (prononcer comme « discover »),
+                est un satellite scientifique développé par la NASA à partir de 1998 en réponse
+                à une demande d'Al Gore à l'époque où celui-ci était vice-président démocrate des États-Unis.
+                DSCOVR est lancé le 11 février 2015. Positionné au point de Lagrange L1 situé à une distance d'un million
+                et demi de kilomètres de la Terre dans la direction du Soleil,
+                il fournit des informations sur le vent solaire, en jouant un rôle important
+                dans le domaine de la météorologie spatiale, et fournit en permanence une vue complète,
+                en temps réel, de la face éclairée de la Terre,
+                (sans compter la face cachée de la Lune, quand elle passe par là), mises à disposition sur Internet.
+            </a>
+        </div>
+        <div class="p-2 flex-fill bd-highlight">
+            <img src="~/IMG/point_of_lagrange1_big.jpg" width="400" height="300">
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - WebSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>*@
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
